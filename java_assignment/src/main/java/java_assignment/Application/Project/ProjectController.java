@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -53,5 +54,18 @@ public class ProjectController {
     public ArrayList<Project> viewAllProject(){
         System.out.println("Hiiiiiiiiiiiiii");
         return pService.viewAllProject();
+    }
+     @GetMapping("/GET/api/v1/projects")
+    public ArrayList<Project> viewAllProjects(){
+        return pService.viewAllProject();
+    }
+     @GetMapping("/GET/api/v1/projects/html")
+    public ArrayList<Project> viewAllProjectsHtml(Model model){
+        model.addAttribute("pl", pService.viewAllProject());
+        return pService.viewAllProject();
+    }
+    @GetMapping("/create-report")
+    public String createJasper(){
+        return pService.createJasper();
     }
 }
